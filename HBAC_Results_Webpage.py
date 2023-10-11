@@ -36,7 +36,6 @@ for key in data.keys():
     ##print(jsondata)
     df3 = pd.concat([jsondata, All_Events], ignore_index=True)
     All_Events = df3
-    
 
 All_Events['time_in_seconds'] = All_Events['time_in_seconds'].astype(float)
 All_Events["Distance_(km)"] = All_Events["Distance_(km)"].replace('9999999', '999', regex=True)
