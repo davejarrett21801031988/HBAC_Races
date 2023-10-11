@@ -326,33 +326,33 @@ def update_data():
 #-------------------------------------------------------------------------------
 
 def get_data():
-    if not firebase_admin._apps:
-        # Load the data only when it is not already loaded
-        cred = credentials.Certificate('serviceAK.json')
-        firebase_admin.initialize_app(cred, {
-            'databaseURL': 'https://costcalculator-bd26f-default-rtdb.firebaseio.com'
-        })
-        data = db.reference('py/Events').get()
-        df = pd.json_normalize(data)
+    data = db.reference('py/Events').get()
+    df = pd.json_normalize(data)
 
-        All_Events = pd.DataFrame(columns=['Event_ID', 'Race_Type', 'Race_Time', 'Event', 'Runner', 'Event_Date' ,'Distance_(km)' ,'time_in_seconds', 'Pace'])
+    All_Events = pd.DataFrame(columns=['Event_ID', 'Race_Type', 'Race_Time', 'Event', 'Runner', 'Event_Date' ,'Distance_(km)' ,'time_in_seconds', 'Pace'])
 
-        for key in data.keys():
-            Event_ID = key
-            jsondata = pd.json_normalize(data[Event_ID])
-            jsondata["Event_ID"] = Event_ID
-            df3 = pd.concat([jsondata, All_Events], ignore_index=True)
-            All_Events = df3
+    for key in data.keys():
+        Event_ID = key
+        jsondata = pd.json_normalize(data[Event_ID])
+        jsondata["Event_ID"] = Event_ID
+        df3 = pd.concat([jsondata, All_Events], ignore_index=True)
+        All_Events = df3
 
-        All_Events['time_in_seconds'] = All_Events['time_in_seconds'].astype(float)
-        All_Events["Distance_(km)"] = All_Events["Distance_(km)"].replace('9999999', '999', regex=True)
-        All_Events['Distance_(km)'] = All_Events['Distance_(km)'].astype(float)
-        All_Events["Distance_(km)"] = All_Events["Distance_(km)"].map('{:,.1f}'.format)
+    All_Events['time_in_seconds'] = All_Events['time_in_seconds'].astype(float)
+    All_Events["Distance_(km)"] = All_Events["Distance_(km)"].replace('9999999', '999', regex=True)
+    All_Events['Distance_(km)'] = All_Events['Distance_(km)'].astype(float)
+    All_Events["Distance_(km)"] = All_Events["Distance_(km)"].map('{:,.1f}'.format)
 
-        st.session_state["data"] = All_Events
-        #print(st.session_state)
+    st.session_state["data"] = All_Events
+    #print(st.session_state)
 
 #-------------------------------------------------------------------------------
+
+if not firebase_admin._apps:
+    cred = credentials.Certificate('serviceAK.json')
+    firebase_admin.initialize_app(cred, {
+        'databaseURL': 'https://costcalculator-bd26f-default-rtdb.firebaseio.com'
+    })
 
 if "data" not in st.session_state:
     get_data()
