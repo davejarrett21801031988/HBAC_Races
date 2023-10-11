@@ -19,6 +19,8 @@ if not firebase_admin._apps:
         'databaseURL': 'https://costcalculator-bd26f-default-rtdb.firebaseio.com'
         })
 
+st.set_page_config(layout="wide")
+
 #read data
 data = db.reference('py/Events').get()
 #print(len(data))
@@ -60,7 +62,7 @@ Gender_Sidebar = st.sidebar.multiselect(
 Year_Sidebar = st.sidebar.multiselect(
    "Year:",
    options=All_Events["Year"].unique(),
-   default=All_Events["Year"].unique()
+   default=['2023']
 )
 
 print(All_Events["Category"].unique())
@@ -113,7 +115,6 @@ Fastest_Times["Distance_(km)"] = Fastest_Times["Distance_(km)"].astype(float)
 Fastest_Times_2 = Fastest_Times[["Category","Event","Event_Date","Runner","Gender","Distance_(km)","Pace","Race_Time"]].sort_values(by=['Distance_(km)'], ascending=True)
 Fastest_Times_2["Distance_(km)"] = Fastest_Times_2["Distance_(km)"].map('{:,.1f}'.format)
 
-
 # --- mainpage ---
 selected = option_menu(
     menu_title = None,
@@ -124,7 +125,7 @@ selected = option_menu(
 if selected == "Overview":
 
     st.markdown(f"<div id='linkto_{0}'></div>", unsafe_allow_html=True)
-    st.title(":runner: Haslemere Results")
+    st.title(":runner: Haslemere Results (Power of 10)")
     st.markdown("##")
     #st.text("text")
 
@@ -170,7 +171,7 @@ if selected == "Overview":
 if selected == "Data":
 
     st.markdown(f"<div id='linkto_{0}'></div>", unsafe_allow_html=True)
-    st.title(":runner: Race Comparisons")
+    st.title(":runner: Haslemere Results (Power of 10)")
     st.markdown("##")
     #st.text("text")
 
