@@ -41,7 +41,7 @@ if "data" not in st.session_state:
         st.session_state["data"] = All_Events
 
 All_Events = st.session_state["data"]
-print(All_Events)
+#print(All_Events)
 
 st.sidebar.title(f"Welcome")
 st.sidebar.header("Please filter here:")
