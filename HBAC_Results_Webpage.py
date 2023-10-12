@@ -198,77 +198,127 @@ def update_data():
         #All_Events['Distance (km)'] = 1
         #print(All_Events.to_string())
 
-        All_Events.loc[All_Events['Race_Type'] == 'parkrun' , 'Distance (km)'] = 5
-        All_Events.loc[All_Events['Race_Type'] == 'HM' , 'Distance (km)'] = 21.1
-        All_Events.loc[All_Events['Race_Type'] == 'Mar' , 'Distance (km)'] = 42.2
-        All_Events.loc[All_Events['Race_Type'] == '10K' , 'Distance (km)'] = 10
-        All_Events.loc[All_Events['Race_Type'] == '5K' , 'Distance (km)'] = 5
-        All_Events.loc[All_Events['Race_Type'] == '1ML' , 'Distance (km)'] = 1.6
-        All_Events.loc[All_Events['Race_Type'] == '8KXC' , 'Distance (km)'] = 8
-        All_Events.loc[All_Events['Race_Type'] == '10KMT' , 'Distance (km)'] = 10
-        All_Events.loc[All_Events['Race_Type'] == '5MXC' , 'Distance (km)'] = 8
-        All_Events.loc[All_Events['Race_Type'] == '14KXC' , 'Distance (km)'] = 14
-        All_Events.loc[All_Events['Race_Type'] == '8.3KXC' , 'Distance (km)'] = 8.3
-        All_Events.loc[All_Events['Race_Type'] == '8.5KXC' , 'Distance (km)'] = 8.5
-        All_Events.loc[All_Events['Race_Type'] == '11.4KNAD' , 'Distance (km)'] = 11.4
-        All_Events.loc[All_Events['Race_Type'] == 'HMNAD' , 'Distance (km)'] = 21.1
-        All_Events.loc[All_Events['Race_Type'] == '10MMT' , 'Distance (km)'] = 16.1
-        All_Events.loc[All_Events['Race_Type'] == '10M' , 'Distance (km)'] = 16.1
-        All_Events.loc[All_Events['Race_Type'] == 'HMMT' , 'Distance (km)'] = 21.1
-        All_Events.loc[All_Events['Race_Type'] == '5M' , 'Distance (km)'] = 8
-        All_Events.loc[All_Events['Race_Type'] == '20M' , 'Distance (km)'] = 32.2
-        All_Events.loc[All_Events['Race_Type'] == '11.7K' , 'Distance (km)'] = 11.7
-        All_Events.loc[All_Events['Race_Type'] == '5KMT' , 'Distance (km)'] = 5
-        All_Events.loc[All_Events['Race_Type'] == '4.6KNAD' , 'Distance (km)'] = 4.6
-        All_Events.loc[All_Events['Race_Type'] == '10KNAD' , 'Distance (km)'] = 10
-        All_Events.loc[All_Events['Race_Type'] == '4.5KNAD' , 'Distance (km)'] = 4.5
-        All_Events.loc[All_Events['Race_Type'] == '100MMT' , 'Distance (km)'] = 161.1
-        All_Events.loc[All_Events['Race_Type'] == '50MMT' , 'Distance (km)'] = 80.5
-        All_Events.loc[All_Events['Race_Type'] == 'ZXC' , 'Distance (km)'] = 8
-        All_Events.loc[All_Events['Race_Type'] == 'SHORT10K' , 'Distance (km)'] = 10
-        All_Events.loc[All_Events['Race_Type'] == 'MarMT' , 'Distance (km)'] = 42.2
-        All_Events.loc[All_Events['Race_Type'] == 'SHORTMar' , 'Distance (km)'] = 42.2
-        All_Events.loc[All_Events['Race_Type'] == '16M' , 'Distance (km)'] = 25.8
-        All_Events.loc[All_Events['Race_Type'] == '11.4KMT' , 'Distance (km)'] = 11.4
-        All_Events.loc[All_Events['Race_Type'] == '7M' , 'Distance (km)'] = 11.3
-        All_Events.loc[All_Events['Race_Type'] == '7KMT' , 'Distance (km)'] = 7
-        All_Events.loc[All_Events['Race_Type'] == '10.7ML' , 'Distance (km)'] = 17.2
+    All_Events.loc[All_Events['Race_Type'] == 'parkrun' , 'Distance_(km)'] = 5
+    All_Events.loc[All_Events['Race_Type'] == 'HM' , 'Distance_(km)'] = 21.1
+    All_Events.loc[All_Events['Race_Type'] == 'Mar' , 'Distance_(km)'] = 42.2
+    All_Events.loc[All_Events['Race_Type'] == '10K' , 'Distance_(km)'] = 10
+    All_Events.loc[All_Events['Race_Type'] == '5K' , 'Distance_(km)'] = 5
+    All_Events.loc[All_Events['Race_Type'] == '1ML' , 'Distance_(km)'] = 1.6
+    All_Events.loc[All_Events['Race_Type'] == '8KXC' , 'Distance_(km)'] = 8
+    All_Events.loc[All_Events['Race_Type'] == '10KMT' , 'Distance_(km)'] = 10
+    All_Events.loc[All_Events['Race_Type'] == '5MXC' , 'Distance_(km)'] = 8
+    All_Events.loc[All_Events['Race_Type'] == '14KXC' , 'Distance_(km)'] = 14
+    All_Events.loc[All_Events['Race_Type'] == '8.3KXC' , 'Distance_(km)'] = 8.3
+    All_Events.loc[All_Events['Race_Type'] == '8.5KXC' , 'Distance_(km)'] = 8.5
+    All_Events.loc[All_Events['Race_Type'] == '11.4KNAD' , 'Distance_(km)'] = 11.4
+    All_Events.loc[All_Events['Race_Type'] == 'HMNAD' , 'Distance_(km)'] = 21.1
+    All_Events.loc[All_Events['Race_Type'] == '10MMT' , 'Distance_(km)'] = 16.1
+    All_Events.loc[All_Events['Race_Type'] == '10M' , 'Distance_(km)'] = 16.1
+    All_Events.loc[All_Events['Race_Type'] == 'HMMT' , 'Distance_(km)'] = 21.1
+    All_Events.loc[All_Events['Race_Type'] == '5M' , 'Distance_(km)'] = 8
+    All_Events.loc[All_Events['Race_Type'] == '20M' , 'Distance_(km)'] = 32.2
+    All_Events.loc[All_Events['Race_Type'] == '11.7K' , 'Distance_(km)'] = 11.7
+    All_Events.loc[All_Events['Race_Type'] == '5KMT' , 'Distance_(km)'] = 5
+    All_Events.loc[All_Events['Race_Type'] == '4.6KNAD' , 'Distance_(km)'] = 4.6
+    All_Events.loc[All_Events['Race_Type'] == '10KNAD' , 'Distance_(km)'] = 10
+    All_Events.loc[All_Events['Race_Type'] == '4.5KNAD' , 'Distance_(km)'] = 4.5
+    All_Events.loc[All_Events['Race_Type'] == '100MMT' , 'Distance_(km)'] = 161.1
+    All_Events.loc[All_Events['Race_Type'] == '50MMT' , 'Distance_(km)'] = 80.5
+    All_Events.loc[All_Events['Race_Type'] == 'ZXC' , 'Distance_(km)'] = 8
+    All_Events.loc[All_Events['Race_Type'] == 'SHORT10K' , 'Distance_(km)'] = 10
+    All_Events.loc[All_Events['Race_Type'] == 'MarMT' , 'Distance_(km)'] = 42.2
+    All_Events.loc[All_Events['Race_Type'] == 'SHORTMar' , 'Distance_(km)'] = 42.2
+    All_Events.loc[All_Events['Race_Type'] == '16M' , 'Distance_(km)'] = 25.8
+    All_Events.loc[All_Events['Race_Type'] == '11.4KMT' , 'Distance_(km)'] = 11.4
+    All_Events.loc[All_Events['Race_Type'] == '7M' , 'Distance_(km)'] = 11.3
+    All_Events.loc[All_Events['Race_Type'] == '7KMT' , 'Distance_(km)'] = 7
+    All_Events.loc[All_Events['Race_Type'] == '10.7ML' , 'Distance_(km)'] = 17.2
+    All_Events.loc[All_Events['Race_Type'] == '5000' , 'Distance_(km)'] = 5
+    All_Events.loc[All_Events['Race_Type'] == '10000' , 'Distance_(km)'] = 10
+    All_Events.loc[All_Events['Race_Type'] == '6KXC' , 'Distance_(km)'] = 6
+    All_Events.loc[All_Events['Race_Type'] == '6.5MMT' , 'Distance_(km)'] = 6.5
+    All_Events.loc[All_Events['Race_Type'] == '6.4KXC' , 'Distance_(km)'] = 6.4
+    All_Events.loc[All_Events['Race_Type'] == '16.05M' , 'Distance_(km)'] = 25.8
+    All_Events.loc[All_Events['Race_Type'] == '5KNAD' , 'Distance_(km)'] = 5
+    All_Events.loc[All_Events['Race_Type'] == '10MMT ' , 'Distance_(km)'] = 16.1
+    All_Events.loc[All_Events['Race_Type'] == '16MMT' , 'Distance_(km)'] = 25.75
+    All_Events.loc[All_Events['Race_Type'] == '9.8MMTL' , 'Distance_(km)'] = 15.8
+    All_Events.loc[All_Events['Race_Type'] == '11MMTL' , 'Distance_(km)'] = 17.7
+    All_Events.loc[All_Events['Race_Type'] == '20MMTL' , 'Distance_(km)'] = 32.2
+    All_Events.loc[All_Events['Race_Type'] == 'ZFL' , 'Distance_(km)'] = 50
+    All_Events.loc[All_Events['Race_Type'] == 'ZMT' , 'Distance_(km)'] = 20
+    All_Events.loc[All_Events['Race_Type'] == '1500' , 'Distance_(km)'] = 1.5
+    All_Events.loc[All_Events['Race_Type'] == '3000' , 'Distance_(km)'] = 3
+    All_Events.loc[All_Events['Race_Type'] == '3.851KL' , 'Distance_(km)'] = 3.85
+    All_Events.loc[All_Events['Race_Type'] == '4.819KL' , 'Distance_(km)'] = 4.82
+    All_Events.loc[All_Events['Race_Type'] == 'ZXCL' , 'Distance_(km)'] = 4
+    All_Events.loc[All_Events['Race_Type'] == 'Mile' , 'Distance_(km)'] = 1.61
+    All_Events.loc[All_Events['Race_Type'] == '20MMT' , 'Distance_(km)'] = 32.2
+    All_Events.loc[All_Events['Race_Type'] == 'MarDH' , 'Distance_(km)'] = 42.2
+    All_Events.loc[All_Events['Race_Type'] == '5.994KL' , 'Distance_(km)'] = 6
+    All_Events.loc[All_Events['Race_Type'] == '1.3ML' , 'Distance_(km)'] = 2
+    All_Events.loc[All_Events['Race_Type'] == '4.315KL' , 'Distance_(km)'] = 4.3
 
-        All_Events.loc[All_Events['Race_Type'] == 'parkrun' , 'Category'] = 'Parkrun'
-        All_Events.loc[All_Events['Race_Type'] == 'HM' , 'Category'] = 'Half Marathon'
-        All_Events.loc[All_Events['Race_Type'] == 'Mar' , 'Category'] = 'Marathon'
-        All_Events.loc[All_Events['Race_Type'] == '10K' , 'Category'] = '10km'
-        All_Events.loc[All_Events['Race_Type'] == '5K' , 'Category'] = '5km'
-        All_Events.loc[All_Events['Race_Type'] == '1ML' , 'Category'] = 'Other'
-        All_Events.loc[All_Events['Race_Type'] == '8KXC' , 'Category'] = 'Other'
-        All_Events.loc[All_Events['Race_Type'] == '10KMT' , 'Category'] = '10km'
-        All_Events.loc[All_Events['Race_Type'] == '5MXC' , 'Category'] = 'Other'
-        All_Events.loc[All_Events['Race_Type'] == '14KXC' , 'Category'] = 'Other'
-        All_Events.loc[All_Events['Race_Type'] == '8.3KXC' , 'Category'] = 'Other'
-        All_Events.loc[All_Events['Race_Type'] == '8.5KXC' , 'Category'] = 'Other'
-        All_Events.loc[All_Events['Race_Type'] == '11.4KNAD' , 'Category'] = 'Other'
-        All_Events.loc[All_Events['Race_Type'] == 'HMNAD' , 'Category'] = 'Half Marathon'
-        All_Events.loc[All_Events['Race_Type'] == '10MMT' , 'Category'] = '10 Miles'
-        All_Events.loc[All_Events['Race_Type'] == '10M' , 'Category'] = '10 Miles'
-        All_Events.loc[All_Events['Race_Type'] == 'HMMT' , 'Category'] = 'Half Marathon'
-        All_Events.loc[All_Events['Race_Type'] == '5M' , 'Category'] = 'Other'
-        All_Events.loc[All_Events['Race_Type'] == '20M' , 'Category'] = '20 Miles'
-        All_Events.loc[All_Events['Race_Type'] == '11.7K' , 'Category'] = 'Other'
-        All_Events.loc[All_Events['Race_Type'] == '5KMT' , 'Category'] = '5km'
-        All_Events.loc[All_Events['Race_Type'] == '4.6KNAD' , 'Category'] = 'Other'
-        All_Events.loc[All_Events['Race_Type'] == '10KNAD' , 'Category'] = 'Other'
-        All_Events.loc[All_Events['Race_Type'] == '4.5KNAD' , 'Category'] = 'Other'
-        All_Events.loc[All_Events['Race_Type'] == '100MMT' , 'Category'] = '100 Miles'
-        All_Events.loc[All_Events['Race_Type'] == '50MMT' , 'Category'] = '50 Miles'
-        All_Events.loc[All_Events['Race_Type'] == 'ZXC' , 'Category'] = 'Other'
-        All_Events.loc[All_Events['Race_Type'] == 'SHORT10K' , 'Category'] = 'Other'
-        All_Events.loc[All_Events['Race_Type'] == 'MarMT' , 'Category'] = 'Marathon'
-        All_Events.loc[All_Events['Race_Type'] == 'SHORTMar' , 'Category'] = 'Other'
-        All_Events.loc[All_Events['Race_Type'] == '16M' , 'Category'] = 'Other'
-        All_Events.loc[All_Events['Race_Type'] == '11.4KMT' , 'Category'] = 'Other'
-        All_Events.loc[All_Events['Race_Type'] == '7M' , 'Category'] = 'Other'
-        All_Events.loc[All_Events['Race_Type'] == '7KMT' , 'Category'] = 'Other'
-        All_Events.loc[All_Events['Race_Type'] == '10.7ML' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == 'parkrun' , 'Category'] = 'Parkrun'
+    All_Events.loc[All_Events['Race_Type'] == 'HM' , 'Category'] = 'Half Marathon'
+    All_Events.loc[All_Events['Race_Type'] == 'Mar' , 'Category'] = 'Marathon'
+    All_Events.loc[All_Events['Race_Type'] == '10K' , 'Category'] = '10km'
+    All_Events.loc[All_Events['Race_Type'] == '5K' , 'Category'] = '5km'
+    All_Events.loc[All_Events['Race_Type'] == '1ML' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '8KXC' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '10KMT' , 'Category'] = '10km'
+    All_Events.loc[All_Events['Race_Type'] == '5MXC' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '14KXC' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '8.3KXC' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '8.5KXC' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '11.4KNAD' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == 'HMNAD' , 'Category'] = 'Half Marathon'
+    All_Events.loc[All_Events['Race_Type'] == '10MMT' , 'Category'] = '10 Miles'
+    All_Events.loc[All_Events['Race_Type'] == '10M' , 'Category'] = '10 Miles'
+    All_Events.loc[All_Events['Race_Type'] == 'HMMT' , 'Category'] = 'Half Marathon'
+    All_Events.loc[All_Events['Race_Type'] == '5M' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '20M' , 'Category'] = '20 Miles'
+    All_Events.loc[All_Events['Race_Type'] == '11.7K' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '5KMT' , 'Category'] = '5km'
+    All_Events.loc[All_Events['Race_Type'] == '4.6KNAD' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '10KNAD' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '4.5KNAD' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '100MMT' , 'Category'] = '100 Miles'
+    All_Events.loc[All_Events['Race_Type'] == '50MMT' , 'Category'] = '50 Miles'
+    All_Events.loc[All_Events['Race_Type'] == 'ZXC' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == 'SHORT10K' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == 'MarMT' , 'Category'] = 'Marathon'
+    All_Events.loc[All_Events['Race_Type'] == 'SHORTMar' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '16M' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '11.4KMT' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '7M' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '7KMT' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '10.7ML' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '5000' , 'Category'] = '5km'
+    All_Events.loc[All_Events['Race_Type'] == '10000' , 'Category'] = '10km'
+    All_Events.loc[All_Events['Race_Type'] == '6KXC' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '6.5MMT' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '6.4KXC' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '16.05M' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '5KNAD' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '10MMT ' , 'Category'] = '10 Miles'
+    All_Events.loc[All_Events['Race_Type'] == '16MMT' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '9.8MMTL' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '11MMTL' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '20MMTL' , 'Category'] = '20 Miles'
+    All_Events.loc[All_Events['Race_Type'] == 'ZFL' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == 'ZMT' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '1500' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '3000' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '3.851KL' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '4.819KL' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == 'ZXCL' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == 'Mile' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '20MMT' , 'Category'] = '20 Miles'
+    All_Events.loc[All_Events['Race_Type'] == 'MarDH' , 'Category'] = 'Marathon'
+    All_Events.loc[All_Events['Race_Type'] == '5.994KL' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '1.3ML' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '4.315KL' , 'Category'] = 'Other'
 
         All_Events["Distance (km)"] = All_Events["Distance (km)"].fillna(9999999)
         All_Events["Category"] = All_Events["Category"].fillna('Other')
@@ -334,6 +384,128 @@ def get_data():
         df3 = pd.concat([jsondata, All_Events], ignore_index=True)
         All_Events = df3
 
+    All_Events.loc[All_Events['Race_Type'] == 'parkrun' , 'Distance_(km)'] = 5
+    All_Events.loc[All_Events['Race_Type'] == 'HM' , 'Distance_(km)'] = 21.1
+    All_Events.loc[All_Events['Race_Type'] == 'Mar' , 'Distance_(km)'] = 42.2
+    All_Events.loc[All_Events['Race_Type'] == '10K' , 'Distance_(km)'] = 10
+    All_Events.loc[All_Events['Race_Type'] == '5K' , 'Distance_(km)'] = 5
+    All_Events.loc[All_Events['Race_Type'] == '1ML' , 'Distance_(km)'] = 1.6
+    All_Events.loc[All_Events['Race_Type'] == '8KXC' , 'Distance_(km)'] = 8
+    All_Events.loc[All_Events['Race_Type'] == '10KMT' , 'Distance_(km)'] = 10
+    All_Events.loc[All_Events['Race_Type'] == '5MXC' , 'Distance_(km)'] = 8
+    All_Events.loc[All_Events['Race_Type'] == '14KXC' , 'Distance_(km)'] = 14
+    All_Events.loc[All_Events['Race_Type'] == '8.3KXC' , 'Distance_(km)'] = 8.3
+    All_Events.loc[All_Events['Race_Type'] == '8.5KXC' , 'Distance_(km)'] = 8.5
+    All_Events.loc[All_Events['Race_Type'] == '11.4KNAD' , 'Distance_(km)'] = 11.4
+    All_Events.loc[All_Events['Race_Type'] == 'HMNAD' , 'Distance_(km)'] = 21.1
+    All_Events.loc[All_Events['Race_Type'] == '10MMT' , 'Distance_(km)'] = 16.1
+    All_Events.loc[All_Events['Race_Type'] == '10M' , 'Distance_(km)'] = 16.1
+    All_Events.loc[All_Events['Race_Type'] == 'HMMT' , 'Distance_(km)'] = 21.1
+    All_Events.loc[All_Events['Race_Type'] == '5M' , 'Distance_(km)'] = 8
+    All_Events.loc[All_Events['Race_Type'] == '20M' , 'Distance_(km)'] = 32.2
+    All_Events.loc[All_Events['Race_Type'] == '11.7K' , 'Distance_(km)'] = 11.7
+    All_Events.loc[All_Events['Race_Type'] == '5KMT' , 'Distance_(km)'] = 5
+    All_Events.loc[All_Events['Race_Type'] == '4.6KNAD' , 'Distance_(km)'] = 4.6
+    All_Events.loc[All_Events['Race_Type'] == '10KNAD' , 'Distance_(km)'] = 10
+    All_Events.loc[All_Events['Race_Type'] == '4.5KNAD' , 'Distance_(km)'] = 4.5
+    All_Events.loc[All_Events['Race_Type'] == '100MMT' , 'Distance_(km)'] = 161.1
+    All_Events.loc[All_Events['Race_Type'] == '50MMT' , 'Distance_(km)'] = 80.5
+    All_Events.loc[All_Events['Race_Type'] == 'ZXC' , 'Distance_(km)'] = 8
+    All_Events.loc[All_Events['Race_Type'] == 'SHORT10K' , 'Distance_(km)'] = 10
+    All_Events.loc[All_Events['Race_Type'] == 'MarMT' , 'Distance_(km)'] = 42.2
+    All_Events.loc[All_Events['Race_Type'] == 'SHORTMar' , 'Distance_(km)'] = 42.2
+    All_Events.loc[All_Events['Race_Type'] == '16M' , 'Distance_(km)'] = 25.8
+    All_Events.loc[All_Events['Race_Type'] == '11.4KMT' , 'Distance_(km)'] = 11.4
+    All_Events.loc[All_Events['Race_Type'] == '7M' , 'Distance_(km)'] = 11.3
+    All_Events.loc[All_Events['Race_Type'] == '7KMT' , 'Distance_(km)'] = 7
+    All_Events.loc[All_Events['Race_Type'] == '10.7ML' , 'Distance_(km)'] = 17.2
+    All_Events.loc[All_Events['Race_Type'] == '5000' , 'Distance_(km)'] = 5
+    All_Events.loc[All_Events['Race_Type'] == '10000' , 'Distance_(km)'] = 10
+    All_Events.loc[All_Events['Race_Type'] == '6KXC' , 'Distance_(km)'] = 6
+    All_Events.loc[All_Events['Race_Type'] == '6.5MMT' , 'Distance_(km)'] = 6.5
+    All_Events.loc[All_Events['Race_Type'] == '6.4KXC' , 'Distance_(km)'] = 6.4
+    All_Events.loc[All_Events['Race_Type'] == '16.05M' , 'Distance_(km)'] = 25.8
+    All_Events.loc[All_Events['Race_Type'] == '5KNAD' , 'Distance_(km)'] = 5
+    All_Events.loc[All_Events['Race_Type'] == '10MMT ' , 'Distance_(km)'] = 16.1
+    All_Events.loc[All_Events['Race_Type'] == '16MMT' , 'Distance_(km)'] = 25.75
+    All_Events.loc[All_Events['Race_Type'] == '9.8MMTL' , 'Distance_(km)'] = 15.8
+    All_Events.loc[All_Events['Race_Type'] == '11MMTL' , 'Distance_(km)'] = 17.7
+    All_Events.loc[All_Events['Race_Type'] == '20MMTL' , 'Distance_(km)'] = 32.2
+    All_Events.loc[All_Events['Race_Type'] == 'ZFL' , 'Distance_(km)'] = 50
+    All_Events.loc[All_Events['Race_Type'] == 'ZMT' , 'Distance_(km)'] = 20
+    All_Events.loc[All_Events['Race_Type'] == '1500' , 'Distance_(km)'] = 1.5
+    All_Events.loc[All_Events['Race_Type'] == '3000' , 'Distance_(km)'] = 3
+    All_Events.loc[All_Events['Race_Type'] == '3.851KL' , 'Distance_(km)'] = 3.85
+    All_Events.loc[All_Events['Race_Type'] == '4.819KL' , 'Distance_(km)'] = 4.82
+    All_Events.loc[All_Events['Race_Type'] == 'ZXCL' , 'Distance_(km)'] = 4
+    All_Events.loc[All_Events['Race_Type'] == 'Mile' , 'Distance_(km)'] = 1.61
+    All_Events.loc[All_Events['Race_Type'] == '20MMT' , 'Distance_(km)'] = 32.2
+    All_Events.loc[All_Events['Race_Type'] == 'MarDH' , 'Distance_(km)'] = 42.2
+    All_Events.loc[All_Events['Race_Type'] == '5.994KL' , 'Distance_(km)'] = 6
+    All_Events.loc[All_Events['Race_Type'] == '1.3ML' , 'Distance_(km)'] = 2
+    All_Events.loc[All_Events['Race_Type'] == '4.315KL' , 'Distance_(km)'] = 4.3
+
+    All_Events.loc[All_Events['Race_Type'] == 'parkrun' , 'Category'] = 'Parkrun'
+    All_Events.loc[All_Events['Race_Type'] == 'HM' , 'Category'] = 'Half Marathon'
+    All_Events.loc[All_Events['Race_Type'] == 'Mar' , 'Category'] = 'Marathon'
+    All_Events.loc[All_Events['Race_Type'] == '10K' , 'Category'] = '10km'
+    All_Events.loc[All_Events['Race_Type'] == '5K' , 'Category'] = '5km'
+    All_Events.loc[All_Events['Race_Type'] == '1ML' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '8KXC' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '10KMT' , 'Category'] = '10km'
+    All_Events.loc[All_Events['Race_Type'] == '5MXC' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '14KXC' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '8.3KXC' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '8.5KXC' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '11.4KNAD' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == 'HMNAD' , 'Category'] = 'Half Marathon'
+    All_Events.loc[All_Events['Race_Type'] == '10MMT' , 'Category'] = '10 Miles'
+    All_Events.loc[All_Events['Race_Type'] == '10M' , 'Category'] = '10 Miles'
+    All_Events.loc[All_Events['Race_Type'] == 'HMMT' , 'Category'] = 'Half Marathon'
+    All_Events.loc[All_Events['Race_Type'] == '5M' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '20M' , 'Category'] = '20 Miles'
+    All_Events.loc[All_Events['Race_Type'] == '11.7K' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '5KMT' , 'Category'] = '5km'
+    All_Events.loc[All_Events['Race_Type'] == '4.6KNAD' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '10KNAD' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '4.5KNAD' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '100MMT' , 'Category'] = '100 Miles'
+    All_Events.loc[All_Events['Race_Type'] == '50MMT' , 'Category'] = '50 Miles'
+    All_Events.loc[All_Events['Race_Type'] == 'ZXC' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == 'SHORT10K' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == 'MarMT' , 'Category'] = 'Marathon'
+    All_Events.loc[All_Events['Race_Type'] == 'SHORTMar' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '16M' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '11.4KMT' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '7M' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '7KMT' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '10.7ML' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '5000' , 'Category'] = '5km'
+    All_Events.loc[All_Events['Race_Type'] == '10000' , 'Category'] = '10km'
+    All_Events.loc[All_Events['Race_Type'] == '6KXC' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '6.5MMT' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '6.4KXC' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '16.05M' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '5KNAD' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '10MMT ' , 'Category'] = '10 Miles'
+    All_Events.loc[All_Events['Race_Type'] == '16MMT' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '9.8MMTL' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '11MMTL' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '20MMTL' , 'Category'] = '20 Miles'
+    All_Events.loc[All_Events['Race_Type'] == 'ZFL' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == 'ZMT' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '1500' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '3000' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '3.851KL' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '4.819KL' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == 'ZXCL' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == 'Mile' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '20MMT' , 'Category'] = '20 Miles'
+    All_Events.loc[All_Events['Race_Type'] == 'MarDH' , 'Category'] = 'Marathon'
+    All_Events.loc[All_Events['Race_Type'] == '5.994KL' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '1.3ML' , 'Category'] = 'Other'
+    All_Events.loc[All_Events['Race_Type'] == '4.315KL' , 'Category'] = 'Other'
+
     All_Events['time_in_seconds'] = All_Events['time_in_seconds'].astype(float)
     All_Events["Distance_(km)"] = All_Events["Distance_(km)"].replace('9999999', '999', regex=True)
     All_Events['Distance_(km)'] = All_Events['Distance_(km)'].astype(float)
@@ -396,10 +568,7 @@ Fastest_Times_2["Distance_(km)"] = Fastest_Times_2["Distance_(km)"].map('{:,.1f}
 
 pie_chart = df_selection
 pie_chart["Count"] = 1
-#pie_chart['Event_Date'] = pd.to_datetime(pie_chart['Event_Date'])
-#pie_chart["FDOM"] = pie_chart["Event_Date"].dt.to_period('Y').dt.to_timestamp()
 #print(pie_chart)
-#pie_chart_selection = pie_chart[["Category","Count"]]
 pie_chart_grouped = (
     pie_chart.groupby(by=["Category"],as_index=False).sum(["Count"])
 )
