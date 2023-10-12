@@ -78,7 +78,7 @@ def update_data():
 
     # data = {'URL': ['756545'],
     #         'Runner': ['Dave Jarrett']}
-    data = {'URL': ['756545','928661','9441','525352','908627','462738','1032278','182034','180701','335794','972878','1135710','411289']}   #,'55017' KT
+    data = {'URL': ['756545','928661','9441','525352','908627','462738','1032278','182034','180701','335794','972878','1135710','411289','55017','66879','575742','925271','176558','110616','476852','922356','1201169','696968','862723','955804','927997','936785']}
     URLs = pd.DataFrame(data)
     #print(len(URLs))
 
@@ -166,16 +166,20 @@ def update_data():
         df = pd.DataFrame(All)
         df_tran = df.transpose()
         df_tran["Race_Type"] = df_tran[0]
-        df_tran["Time"] = df_tran[1]
+        df_tran["Time_Pre"] = df_tran[1]
         df_tran["Event"] = df_tran[2]
         df_tran["Date"] = df_tran[3]
         df_tran["Runner"] = df_tran[4]
         df_tran["Gender"] = df_tran[5]
-        All_Events = df_tran[["Race_Type","Time","Event","Date","Runner","Gender"]]
+        All_Events = df_tran[["Race_Type","Time_Pre","Event","Date","Runner","Gender"]]
+
+        All_Events["Time"] = All_Events["Time_Pre"].str.split('.').str[0]
+        #All_Events["Time_2"] = All_Events["Time"][:last_colon_index + 2]
 
         All_Events = All_Events[~All_Events["Race_Type"].isin(['Event'])]
-        All_Events = All_Events[~All_Events["Time"].isin(['18:11.62'])]
+        #All_Events = All_Events[~All_Events["Time"].isin(['18:11.62'])]
         All_Events = All_Events[~All_Events["Time"].isin(['NT'])]
+        All_Events = All_Events[~All_Events["Time"].isin(['29'])]
         #print(All_Events.to_string())
         #print(All_Events['Race_Type'].unique())
 
@@ -187,6 +191,7 @@ def update_data():
         All_Events["Event"] = All_Events["Event"].replace('\.', '', regex=True)
 
         All_Events['Event Date'] = pd.to_datetime(All_Events['Date'], format="%d %b %y")
+
         All_Events['Seconds'] = All_Events['Time'].str[-2:]
         All_Events['Minutes'] = All_Events['Time'].str[-5:-3]
         All_Events['Minutes'] = All_Events['Minutes'].astype(int)
@@ -359,19 +364,6 @@ if "data" not in st.session_state:
 
 All_Events = st.session_state["data"]
 
-# if isinstance(st.session_state["data"], pd.core.frame.DataFrame):
-#     All_Events = st.session_state["data"]
-# else:
-#     st.session_state.clear()
-#     get_data()
-#     All_Events = st.session_state["data"]
-
-# print(st.session_state)
-
-# if st.session_state["data"] == {}:
-#     st.session_state.clear()
-#     get_data()
-
 st.sidebar.title(f"Welcome")
 st.sidebar.header("Please filter here:")
 Runner_Sidebar = st.sidebar.multiselect(
@@ -395,46 +387,9 @@ Year_Sidebar = st.sidebar.multiselect(
    default=['2023']
 )
 
-#print(All_Events["Category"].unique())
-
 df_selection = All_Events.query(
     "Runner == @Runner_Sidebar & Category == @Category_Sidebar & Year == @Year_Sidebar & Gender == @Gender_Sidebar"
 )
-#
-# df_selection_pie_2 = df_selection[["Race_Type","RaceCount"]]
-# df_selection_pie_3 = (
-#     df_selection_pie_2.groupby(by=["Race_Type"],as_index=False).sum("RaceCount")
-# )
-# #print(df_selection_pie_3)
-#
-# fig_pie = px.pie(
-#     data_frame = df_selection_pie_3,
-#     labels = "Race_Type",
-#     values = "RaceCount",
-#     #sort = False,
-#     names = "Race_Type",
-#     #layout_showlegend = True,
-#     color = "Race_Type",
-#     #color_discrete_map={
-#     #        "Cats": "lightsteelblue",
-#     #        "Drinks": "cornflowerblue",
-#     #        "House Bills": "royalblue",
-#     #        "Food": "lavender",
-#     #        "Guildford Flat": "midnightblue",
-#     #        "Fuel": "navy",
-#     #        "Other Bills": "darkblue",
-#     #        "Mortgage Interest": "mediumblue",
-#     #        "Mortgage Capital": "blue",
-#     #        "Balancing Figure": "slateblue",
-#     #        "Dog": "darkslateblue",
-#     #        "Fun": "mediumslateblue",
-#     #        "House Stuff": "mediumpurple",
-#     #        "Cars": "indigo"
-#     #        },
-#     title = "Race_Types"
-#     )
-
-#print(df_selection)
 
 RaceCount = len(df_selection)
 Runners = len(df_selection["Runner"].unique())
@@ -445,7 +400,52 @@ Fastest_Times["Distance_(km)"] = Fastest_Times["Distance_(km)"].astype(float)
 Fastest_Times_2 = Fastest_Times[["Category","Event","Event_Date","Runner","Gender","Distance_(km)","Pace","Race_Time"]].sort_values(by=['Distance_(km)'], ascending=True)
 Fastest_Times_2["Distance_(km)"] = Fastest_Times_2["Distance_(km)"].map('{:,.1f}'.format)
 
-# --- mainpage ---
+#-------------------------------------------------------------------------------
+
+pie_chart = df_selection
+pie_chart["Count"] = 1
+pie_chart['Event_Date'] = pd.to_datetime(pie_chart['Event_Date'])
+pie_chart["FDOM"] = pie_chart["Event_Date"].dt.to_period('Y').dt.to_timestamp()
+#print(pie_chart)
+#pie_chart_selection = pie_chart[["Category","Count"]]
+pie_chart_grouped = (
+    pie_chart.groupby(by=["Category"],as_index=False).sum(["Count"])
+)
+
+#print(pie_chart_grouped)
+
+fig_pie = px.pie(
+    data_frame = pie_chart_grouped,
+    labels = "Category",
+    values = "Count",
+    names = "Category",
+    title = "Events by Category"
+    )
+
+#-------------------------------------------------------------------------------
+
+bar_chart = (
+    pie_chart.groupby(by=["FDOM","Category"],as_index=False).sum(["Count"])
+)
+
+#print (bar_chart)
+
+fig_bar_chart = px.bar(
+    data_frame = bar_chart,
+    x="FDOM",
+    y="Count",
+    color="Category",
+    title="Events over Time",
+    #template="plotly_white",
+)
+fig_bar_chart.update_layout(
+    plot_bgcolor="rgba(0,0,0,0)",
+    xaxis=(dict(showgrid=False)),
+    yaxis=(dict(showgrid=False)),
+    #showlegend=False,
+)
+
+# --- mainpage -----------------------------------------------------------------
 selected = option_menu(
     menu_title = None,
     options=["Overview","Data","Update"],
@@ -472,12 +472,17 @@ if selected == "Overview":
     st.text("Fastest Times:")
     st.table(Fastest_Times_2)
 
-#     left_column, right_column = st.columns(2)
-#     with left_column:
-#         st.plotly_chart(fig_pie)
-#     with right_column:
-#         st.text("TBC:")
-#         #st.plotly_chart(fig_pie)
+    st.markdown("---")
+
+    left_column, right_column = st.columns(2)
+    with left_column:
+        st.plotly_chart(fig_pie)
+    with right_column:
+        st.plotly_chart(fig_bar_chart)
+    #with last:
+    #    st.text("help")
+        #st.plotly_chart(fig_line_totals)
+    st.markdown("---")
 
     hide_st_style = """
         <style>
