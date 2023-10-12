@@ -706,3 +706,4 @@ if selected == "Update":
 
     if st.button('Update data from Power10'):
         update_data()
+        get_data()
