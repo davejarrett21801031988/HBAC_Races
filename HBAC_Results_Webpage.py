@@ -16,14 +16,6 @@ from datetime import date
 
 st.set_page_config(layout="wide")
 
-# # Define a function to clear session state
-# def clear_session_state():
-#     st.session_state.clear()
-#
-# window.onbeforeunload = clear_session_state
-#
-# print(st.session_state)
-
 #-------------------------------------------------------------------------------
 
 def update_data():
@@ -74,7 +66,6 @@ def update_data():
         Captured = df3
 
     #print(Captured)
-
 
     # data = {'URL': ['756545'],
     #         'Runner': ['Dave Jarrett']}
@@ -384,7 +375,8 @@ Gender_Sidebar = st.sidebar.multiselect(
 Year_Sidebar = st.sidebar.multiselect(
    "Year:",
    options=All_Events["Year"].unique(),
-   default=['2023']
+   default=All_Events["Year"].unique()
+   #default=['2023']
 )
 
 df_selection = All_Events.query(
@@ -404,8 +396,8 @@ Fastest_Times_2["Distance_(km)"] = Fastest_Times_2["Distance_(km)"].map('{:,.1f}
 
 pie_chart = df_selection
 pie_chart["Count"] = 1
-pie_chart['Event_Date'] = pd.to_datetime(pie_chart['Event_Date'])
-pie_chart["FDOM"] = pie_chart["Event_Date"].dt.to_period('Y').dt.to_timestamp()
+#pie_chart['Event_Date'] = pd.to_datetime(pie_chart['Event_Date'])
+#pie_chart["FDOM"] = pie_chart["Event_Date"].dt.to_period('Y').dt.to_timestamp()
 #print(pie_chart)
 #pie_chart_selection = pie_chart[["Category","Count"]]
 pie_chart_grouped = (
@@ -425,14 +417,14 @@ fig_pie = px.pie(
 #-------------------------------------------------------------------------------
 
 bar_chart = (
-    pie_chart.groupby(by=["FDOM","Category"],as_index=False).sum(["Count"])
+    pie_chart.groupby(by=["Year","Category"],as_index=False).sum(["Count"])
 )
 
 #print (bar_chart)
 
 fig_bar_chart = px.bar(
     data_frame = bar_chart,
-    x="FDOM",
+    x="Year",
     y="Count",
     color="Category",
     title="Events over Time",
@@ -503,6 +495,8 @@ if selected == "Overview":
     # Inject CSS with Markdown
     st.markdown(hide_table_row_index, unsafe_allow_html=True)
 
+#-------------------------------------------------------------------------------
+
 if selected == "Data":
 
     st.markdown(f"<div id='linkto_{0}'></div>", unsafe_allow_html=True)
@@ -532,6 +526,8 @@ if selected == "Data":
 
     # Inject CSS with Markdown
     st.markdown(hide_table_row_index, unsafe_allow_html=True)
+
+#-------------------------------------------------------------------------------
 
 if selected == "Update":
 
