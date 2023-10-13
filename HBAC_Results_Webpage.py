@@ -639,7 +639,7 @@ fig_bar_chart.update_layout(
 # --- mainpage -----------------------------------------------------------------
 selected = option_menu(
     menu_title = None,
-    options=["Overview","Data","Update"],
+    options=["Overview","Head-to-Head","Data","Update"],
     orientation = "horizontal"
 )
 
@@ -674,6 +674,87 @@ if selected == "Overview":
     #    st.text("help")
         #st.plotly_chart(fig_line_totals)
     st.markdown("---")
+
+    hide_st_style = """
+        <style>
+        #MainMenu {visibility: hidden}
+        footer {visibility: hidden}
+        </style>
+        """
+    st.markdown(hide_st_style, unsafe_allow_html=True)
+
+    # CSS to inject contained in a string
+    hide_table_row_index = """
+                <style>
+                tbody th {display:none}
+                .blank {display:none}
+                </style>
+                """
+
+    # Inject CSS with Markdown
+    st.markdown(hide_table_row_index, unsafe_allow_html=True)
+
+#-------------------------------------------------------------------------------
+
+if selected == "Head-to-Head":
+
+    st.markdown(f"<div id='linkto_{0}'></div>", unsafe_allow_html=True)
+    st.title(":runner: Haslemere Results (Power of 10)")
+    st.markdown("##")
+    #st.text("text")
+
+    options = df_selection["Runner"].unique()
+    default_index_1 = list(options).index('Jon Fairs')
+    default_index_2 = list(options).index('David Jarrett')
+
+    left_column, right_column = st.columns(2)
+    with left_column:
+        R1 = st.selectbox('Runner 1:', options, index=default_index_1)
+    with right_column:
+        R2 = st.selectbox('Runner 2:', options, index=default_index_2)
+
+    Runner1 = R1.split(",")
+    Runner2 = R2.split(",")
+
+    df_selection_3 = df_selection[["Category","Race_Type","Distance_(km)","Race_Time","Event","Event_Date","Runner","time_in_seconds"]].sort_values(by=['Event_Date'], ascending=False)
+    df_selection_H2H_Runner_1 = df_selection_3[df_selection_3["Runner"].isin(Runner1)]
+    df_selection_H2H_Runner_1['Event_ID_H2H'] = df_selection_H2H_Runner_1['Event_Date'].astype(str) + df_selection_H2H_Runner_1['Event']
+    df_selection_H2H_Runner_2 = df_selection_3[df_selection_3["Runner"].isin(Runner2)]
+    df_selection_H2H_Runner_2['Event_ID_H2H'] = df_selection_H2H_Runner_2['Event_Date'].astype(str) + df_selection_H2H_Runner_2['Event']
+    df_H2H = df_selection_H2H_Runner_1.merge(df_selection_H2H_Runner_2, on='Event_ID_H2H', how='inner')
+    df_H2H_2 = df_H2H[["Category_x","Race_Type_x","Distance_(km)_x","Event_x","Event_Date_x","Race_Time_x","Race_Time_y","time_in_seconds_x","time_in_seconds_y"]].sort_values(by=['Event_Date_x'], ascending=False)
+    df_H2H_2 = df_H2H_2.rename(columns={'Category_x': 'Category'})
+    df_H2H_2 = df_H2H_2.rename(columns={'Race_Type_x': 'Race_Type'})
+    df_H2H_2 = df_H2H_2.rename(columns={'Distance_(km)_x': 'Distance_(km)'})
+    df_H2H_2 = df_H2H_2.rename(columns={'Event_x': 'Event'})
+    df_H2H_2 = df_H2H_2.rename(columns={'Event_Date_x': 'Event_Date'})
+    df_H2H_2 = df_H2H_2.rename(columns={'Race_Time_x': 'Race_Time_Runner1'})
+    df_H2H_2 = df_H2H_2.rename(columns={'Race_Time_y': 'Race_Time_Runner2'})
+    df_H2H_2['Delta (s)'] = df_H2H_2['time_in_seconds_x'] - df_H2H_2['time_in_seconds_y']
+    df_H2H_2['Races'] = 1
+
+    H2H_grouped = (
+        df_H2H_2.groupby(by=["Category","Distance_(km)"],as_index=False).sum(["Delta (s)"])
+    )
+    H2H_grouped['Distance_(km)'] = H2H_grouped['Distance_(km)'].astype(float)
+    H2H_grouped_2 = H2H_grouped[["Category","Distance_(km)","Races","Delta (s)"]].sort_values(by=['Distance_(km)'], ascending=True)
+    H2H_grouped_2['Delta (s)'] = H2H_grouped_2['Delta (s)'].astype(int)
+    sum_row = H2H_grouped_2.sum()
+    H2H_grouped_2 = H2H_grouped_2.append(sum_row, ignore_index=True)
+    H2H_grouped_2.iloc[-1, 0] = 'Total'
+    H2H_grouped_2.iloc[-1, 1] = ''
+    H2H_grouped_2.loc[H2H_grouped_2['Delta (s)'] > 0 , 'Result'] = R2 + ' is ahead by ' + H2H_grouped_2['Delta (s)'].astype(str) + ' seconds'
+    H2H_grouped_2.loc[H2H_grouped_2['Delta (s)'] < 0 , 'Result'] = R1 + ' is ahead by ' + (H2H_grouped_2['Delta (s)'] * -1).astype(str) + ' seconds'
+    H2H_grouped_2.loc[H2H_grouped_2['Delta (s)'] == 0 , 'Result'] = 'Draw'
+
+    H2H_grouped_2 = H2H_grouped_2[["Category","Distance_(km)","Races","Result"]]
+    st.table(H2H_grouped_2)
+
+    df_H2H_2 = df_H2H_2[["Category","Race_Type","Distance_(km)","Event","Event_Date","Race_Time_Runner1","Race_Time_Runner2","Delta (s)"]].sort_values(by=['Event_Date'], ascending=False)
+    df_H2H_2 = df_H2H_2.rename(columns={'Race_Time_Runner1': 'Time_' + R1})
+    df_H2H_2 = df_H2H_2.rename(columns={'Race_Time_Runner2': 'Time_' + R2})
+    df_H2H_2['Delta (s)'] = df_H2H_2['Delta (s)'].astype(int)
+    st.table(df_H2H_2)
 
     hide_st_style = """
         <style>
