@@ -527,17 +527,19 @@ if "data" not in st.session_state:
 
 All_Events = st.session_state["data"]
 
+distinct_runners = All_Events[["Runner"]].sort_values(by=['Runner'], ascending=True)
+
 st.sidebar.title(f"Welcome")
 st.sidebar.header("Please filter here:")
 Runner_Sidebar = st.sidebar.multiselect(
     "Runner:",
     options=All_Events["Runner"].unique(),
-    default=All_Events["Runner"].unique()
+    default=distinct_runners["Runner"].unique()
 )
 Category_Sidebar = st.sidebar.multiselect(
    "Category:",
    options=All_Events["Category"].unique(),
-   default=['Parkrun', '10km', 'Marathon', 'Half Marathon', '20 Miles', '10 Miles','100 Miles', '5km', '50 Miles']
+   default=['Parkrun', '5km', '10km', '10 Miles', 'Half Marathon', '20 Miles', 'Marathon', '50 Miles', '100 Miles']
 )
 Gender_Sidebar = st.sidebar.multiselect(
    "Gender:",
@@ -582,6 +584,11 @@ fig_pie = px.pie(
     names = "Category",
     title = "Events by Category"
     )
+#fig_pie.update_traces(texttemplate='%{label} (%{percent:.2f}%)')
+fig_pie.update_layout(
+    plot_bgcolor="rgba(0,0,0,0)",
+    showlegend=True,
+)
 
 #-------------------------------------------------------------------------------
 
@@ -596,14 +603,14 @@ fig_bar_chart = px.bar(
     x="Year",
     y="Count",
     color="Category",
-    title="Events over Time",
-    #template="plotly_white",
+    title="Events over Time"
 )
+fig_bar_chart.update_xaxes(
+    dtick="M1")
 fig_bar_chart.update_layout(
     plot_bgcolor="rgba(0,0,0,0)",
     xaxis=(dict(showgrid=False)),
-    yaxis=(dict(showgrid=False)),
-    #showlegend=False,
+    yaxis=(dict(showgrid=False))
 )
 
 # --- mainpage -----------------------------------------------------------------
