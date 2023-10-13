@@ -75,9 +75,8 @@ def update_data():
 
     #print(Captured)
 
-    # data = {'URL': ['756545'],
-    #         'Runner': ['Dave Jarrett']}
-    data = {'URL': ['756545','928661','9441','525352','908627','462738','1032278','182034','180701','335794','972878','1135710','411289','55017','66879','575742','925271','176558','110616','476852','922356','1201169','696968','862723','955804','927997','936785','701185','11659','1139234','839554','315402','708602','839495','794996','739845','450151','83641','1119390','832605','1086908']}
+    data = {'URL': ['756545','928661','9441','525352','908627','462738','1032278','182034','180701','335794','972878','1135710','411289','55017','66879','575742','925271','176558','110616','476852','922356','1201169','696968','862723','955804','927997','936785','701185','11659','1139234','839554','315402','708602','839495','794996','739845','450151','83641','1119390','832605','526053','1086908']}
+    #data = {'URL': ['526053']}
     URLs = pd.DataFrame(data)
     #print(len(URLs))
 
@@ -172,19 +171,12 @@ def update_data():
         df_tran["Gender"] = df_tran[5]
         All_Events = df_tran[["Race_Type","Time_Pre","Event","Date","Runner","Gender"]]
 
-        All_Events["Time"] = All_Events["Time_Pre"].str.split('.').str[0]
-        #All_Events["Time_2"] = All_Events["Time"][:last_colon_index + 2]
-
+        All_Events["Time_Pre"] = All_Events["Time_Pre"].str.strip()
+        All_Events["Race_Type"] = All_Events["Race_Type"].str.strip()
+        All_Events["Time_1"] = All_Events["Time_Pre"].str.split('.').str[0]
         All_Events = All_Events[~All_Events["Race_Type"].isin(['Event'])]
-        #All_Events = All_Events[~All_Events["Time"].isin(['18:11.62'])]
-        All_Events = All_Events[~All_Events["Time"].isin(['NT'])]
-
-        #add in script to deal with time of length 2!!!!!-----------------------
-        All_Events["Time"] = All_Events["Time"].apply(append_string)
-        #All_Events = All_Events[~All_Events["Time"].isin(['29'])]
-        #All_Events = All_Events[~All_Events["Time"].isin(['30'])]
-        #print(All_Events.to_string())
-        #print(All_Events['Race_Type'].unique())
+        All_Events = All_Events[~All_Events["Time_1"].isin(['NT'])]
+        All_Events["Time"] = All_Events["Time_1"].apply(append_string)
 
         All_Events["Event"] = All_Events["Event"].replace('\#', '', regex=True)
         All_Events["Event"] = All_Events["Event"].replace('\$', '', regex=True)
@@ -199,7 +191,6 @@ def update_data():
         All_Events['Minutes'] = All_Events['Time'].str[-5:-3]
         All_Events['Minutes'] = All_Events['Minutes'].astype(int)
         All_Events[['Additional Hours', 'Additional Minutes']] = All_Events['Minutes'].apply(lambda x: divmod(x, 60)).apply(pd.Series)
-        #All_Events['Carried Hour'] = All_Events['Minutes'] - 60
         All_Events['Hours'] = All_Events['Time'].str[-8:-6]
         All_Events["Hours"] = All_Events["Hours"].str.replace(' ','')
         All_Events["Hours"] = All_Events["Hours"].replace('', np.nan)
@@ -207,7 +198,6 @@ def update_data():
         All_Events['Hours'] = All_Events['Hours'].astype(int)
         All_Events['Total Hours'] = All_Events['Hours'] + All_Events['Additional Hours']
         All_Events['Race Time'] = pd.to_datetime(All_Events["Total Hours"].astype(str) + ':' + All_Events['Additional Minutes'].astype(str) + ':' + All_Events['Seconds'], format='%H:%M:%S').dt.time
-        #All_Events['Distance (km)'] = 1
         #print(All_Events.to_string())
 
         All_Events.loc[All_Events['Race_Type'] == 'parkrun' , 'Distance (km)'] = 5
@@ -252,7 +242,6 @@ def update_data():
         All_Events.loc[All_Events['Race_Type'] == '6.4KXC' , 'Distance (km)'] = 6.4
         All_Events.loc[All_Events['Race_Type'] == '16.05M' , 'Distance (km)'] = 25.8
         All_Events.loc[All_Events['Race_Type'] == '5KNAD' , 'Distance (km)'] = 5
-        All_Events.loc[All_Events['Race_Type'] == '10MMT ' , 'Distance (km)'] = 16.1
         All_Events.loc[All_Events['Race_Type'] == '16MMT' , 'Distance (km)'] = 25.75
         All_Events.loc[All_Events['Race_Type'] == '9.8MMTL' , 'Distance (km)'] = 15.8
         All_Events.loc[All_Events['Race_Type'] == '11MMTL' , 'Distance (km)'] = 17.7
@@ -313,7 +302,6 @@ def update_data():
         All_Events.loc[All_Events['Race_Type'] == '6.4KXC' , 'Category'] = 'Other'
         All_Events.loc[All_Events['Race_Type'] == '16.05M' , 'Category'] = 'Other'
         All_Events.loc[All_Events['Race_Type'] == '5KNAD' , 'Category'] = '5km'
-        All_Events.loc[All_Events['Race_Type'] == '10MMT ' , 'Category'] = '10 Miles'
         All_Events.loc[All_Events['Race_Type'] == '16MMT' , 'Category'] = 'Other'
         All_Events.loc[All_Events['Race_Type'] == '9.8MMTL' , 'Category'] = 'Other'
         All_Events.loc[All_Events['Race_Type'] == '11MMTL' , 'Category'] = 'Other'
@@ -352,7 +340,7 @@ def update_data():
 
         i=0
 
-        while i < (len(All_Events)-1):
+        while i < len(All_Events):
 
             #print(All_Events.to_string())
 
@@ -438,7 +426,6 @@ def get_data():
     All_Events.loc[All_Events['Race_Type'] == '6.4KXC' , 'Distance_(km)'] = 6.4
     All_Events.loc[All_Events['Race_Type'] == '16.05M' , 'Distance_(km)'] = 25.8
     All_Events.loc[All_Events['Race_Type'] == '5KNAD' , 'Distance_(km)'] = 5
-    All_Events.loc[All_Events['Race_Type'] == '10MMT ' , 'Distance_(km)'] = 16.1
     All_Events.loc[All_Events['Race_Type'] == '16MMT' , 'Distance_(km)'] = 25.75
     All_Events.loc[All_Events['Race_Type'] == '9.8MMTL' , 'Distance_(km)'] = 15.8
     All_Events.loc[All_Events['Race_Type'] == '11MMTL' , 'Distance_(km)'] = 17.7
@@ -499,7 +486,6 @@ def get_data():
     All_Events.loc[All_Events['Race_Type'] == '6.4KXC' , 'Category'] = 'Other'
     All_Events.loc[All_Events['Race_Type'] == '16.05M' , 'Category'] = 'Other'
     All_Events.loc[All_Events['Race_Type'] == '5KNAD' , 'Category'] = '5km'
-    All_Events.loc[All_Events['Race_Type'] == '10MMT ' , 'Category'] = '10 Miles'
     All_Events.loc[All_Events['Race_Type'] == '16MMT' , 'Category'] = 'Other'
     All_Events.loc[All_Events['Race_Type'] == '9.8MMTL' , 'Category'] = 'Other'
     All_Events.loc[All_Events['Race_Type'] == '11MMTL' , 'Category'] = 'Other'
