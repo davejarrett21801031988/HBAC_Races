@@ -563,7 +563,7 @@ df_selection["Rank"] = df_selection.groupby('Category')['time_in_seconds'].rank(
 Rank_Top = [1]
 Fastest_Times = df_selection[df_selection["Rank"].isin(Rank_Top)]
 Fastest_Times["Distance_(km)"] = Fastest_Times["Distance_(km)"].astype(float)
-Fastest_Times_2 = Fastest_Times[["Category","Event","Event_Date","Runner","Gender","Distance_(km)","Pace","Race_Time"]].sort_values(by=['Distance_(km)'], ascending=True)
+Fastest_Times_2 = Fastest_Times[["Category","Race_Type","Event","Event_Date","Runner","Gender","Distance_(km)","Pace","Race_Time"]].sort_values(by=['Distance_(km)'], ascending=True)
 Fastest_Times_2["Distance_(km)"] = Fastest_Times_2["Distance_(km)"].map('{:,.1f}'.format)
 
 #-------------------------------------------------------------------------------
@@ -680,7 +680,7 @@ if selected == "Data":
     st.markdown("##")
     #st.text("text")
 
-    df_selection_2 = df_selection[["Race_Type","Distance_(km)","Race_Time","Event","Event_Date","Runner","Gender","Pace"]].sort_values(by=['Event_Date'], ascending=False)
+    df_selection_2 = df_selection[["Category","Race_Type","Distance_(km)","Race_Time","Event","Event_Date","Runner","Gender","Pace"]].sort_values(by=['Event_Date'], ascending=False)
     st.table(df_selection_2)
     #st.table(df_selection_2.style.format({'Race_Time': '{:%H:%M:%S}','Event_Date': '{:%Y-%m-%d}'}))
 
