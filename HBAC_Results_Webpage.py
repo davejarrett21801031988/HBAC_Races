@@ -582,6 +582,19 @@ fig_pie = px.pie(
     labels = "Category",
     values = "Count",
     names = "Category",
+    color = "Category",
+    color_discrete_map={
+            "Parkrun": "lightsteelblue",
+            "5km": "cornflowerblue",
+            "10km": "royalblue",
+            "10 Miles": "lavender",
+            "Half Marathon": "midnightblue",
+            "20 Miles": "navy",
+            "Marathon": "darkblue",
+            "Other": "mediumblue",
+            "50 Miles": "blue",
+            "100 Miles": "slateblue"
+            },
     title = "Events by Category"
     )
 #fig_pie.update_traces(texttemplate='%{label} (%{percent:.2f}%)')
@@ -602,7 +615,19 @@ fig_bar_chart = px.bar(
     data_frame = bar_chart,
     x="Year",
     y="Count",
-    color="Category",
+    color = "Category",
+    color_discrete_map={
+            "Parkrun": "lightsteelblue",
+            "5km": "cornflowerblue",
+            "10km": "royalblue",
+            "10 Miles": "lavender",
+            "Half Marathon": "midnightblue",
+            "20 Miles": "navy",
+            "Marathon": "darkblue",
+            "Other": "mediumblue",
+            "50 Miles": "blue",
+            "100 Miles": "slateblue"
+            },
     title="Events over Time"
 )
 fig_bar_chart.update_xaxes(
