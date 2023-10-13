@@ -170,6 +170,8 @@ def update_data():
         All_Events = All_Events[~All_Events["Race_Type"].isin(['Event'])]
         #All_Events = All_Events[~All_Events["Time"].isin(['18:11.62'])]
         All_Events = All_Events[~All_Events["Time"].isin(['NT'])]
+
+        #add in script to deal with time of length 2!!!!!-----------------------
         All_Events = All_Events[~All_Events["Time"].isin(['29'])]
         All_Events = All_Events[~All_Events["Time"].isin(['30'])]
         #print(All_Events.to_string())
